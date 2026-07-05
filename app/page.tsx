@@ -1,5 +1,6 @@
 import Image from "next/image";
 import HelloWorld from "./HelloWorld";
+import Greeting from "./Greeting";
 
 export default function Home() {
   return (
@@ -17,6 +18,9 @@ export default function Home() {
         <HelloWorld />
         {/* 同じコンポーネントは複数回使用可能 */}
         <HelloWorld />
+        <h2>Greeting</h2>
+        <Greeting name="Alice" message="Hi"/>
+        <Greeting name="Bob" />
         <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
           <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
             To get started, edit the page.tsx file.
