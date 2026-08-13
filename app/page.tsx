@@ -1,6 +1,7 @@
 import Image from "next/image";
 import HelloWorld from "./HelloWorld";
 import Greeting from "./Greeting";
+import WelcomeMessage from "./WelcomeMessageProps";
 
 export default function Home() {
   return (
@@ -20,7 +21,31 @@ export default function Home() {
         <HelloWorld />
         <h2>Greeting</h2>
         <Greeting name="Alice" message="Hi"/>
+        <br/>
+        <br/>
+
         <Greeting name="Bob" />
+        <br/>
+        <br/>
+        <WelcomeMessage
+          name="Charlie"
+          age={30}
+          isActive={true}
+          details={{ city: "New York" }}
+          tags={["developer", "react", "next.js"]}
+          renderExtra={() => <p>Extra content rendered from a function prop!</p>}
+        />
+        <br/>
+        <br/>
+        <WelcomeMessage
+          name="Dave"
+          age={25}
+          isActive={false}
+          details={{ city: "Los Angeles" }}
+          tags={["designer", "javascript"]}
+        />
+        <br/>
+        <br/>
         <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
           <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
             To get started, edit the page.tsx file.
