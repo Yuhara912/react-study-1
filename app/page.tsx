@@ -2,11 +2,43 @@ import Image from "next/image";
 import HelloWorld from "./HelloWorld";
 import Greeting from "./Greeting";
 import WelcomeMessage from "./WelcomeMessageProps";
+import ClickButton from "./ClickButton";
+import { useState } from "react";
 
 export default function Home() {
+  const [message, setMessage] = useState("Hello");
+  const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    console.log('Button clicked!');
+    console.log('EventObject:', event);
+    //イベントオブジェクトにアクセス可能
+    setMessage("Button Clicked!");
+    //stateを更新してメッセージを変更
+    //子コンポーネントに何かしらのデータを渡したい場合は関すに追加の引数を定義する
+    //handleButtonClick = (event,extraData) => { ... }のように定義し、ClickButtonコンポーネントでonClick={() => handleButtonClick(event, extraData)}のように呼び出す
+
+  };
+  const userName = "Bob";
+  const userAge = 30;
+  const userStatus = true;
+  const userDetails = { city: "Tokyo" };
+  const userTags = ["developer", "react", "next.js"];
+  const renderAdditionalInfo = () => <p>Additional information rendered from a function prop!</p>;
   return (
     <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
       <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
+      <h1>Event Handling</h1>
+      {/**
+       * handleButtonClick関数をonClickというprops名で子コンポーネントに渡す
+       */}
+      <ClickButton onClick={handleButtonClick} label="Click Me" />
+
+
+
+
+
+
+
+
         <Image
           className="dark:invert"
           src="/next.svg"
@@ -46,7 +78,17 @@ export default function Home() {
         />
         <br/>
         <br/>
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
+        <WelcomeMessage
+          name={userName}
+          age={userAge}
+          isActive={userStatus}
+          details={userDetails}
+          tags={userTags}
+          renderExtra={renderAdditionalInfo}
+        />
+        <br/>
+        <br/>
+        {/* <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
           <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
             To get started, edit the page.tsx file.
           </h1>
@@ -67,8 +109,8 @@ export default function Home() {
             </a>{" "}
             center.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
+        </div> */}
+        {/* <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
           <a
             className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
             href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
@@ -92,7 +134,7 @@ export default function Home() {
           >
             Documentation
           </a>
-        </div>
+        </div> */}
       </main>
     </div>
   );
